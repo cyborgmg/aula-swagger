@@ -1,0 +1,280 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Cliente API"
+  description: "| Administração de Clientes | [Saiba Mais](http://virtserver.swaggerhub.com/carledwinti/Cliente_API/1.0.0/readme)"
+consumes: 
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: "Consulta"
+  - name: "Cadastro"
+  - name: "Manutencao"
+  - name: "Exclusao"
+  - name: "API"
+host: virtserver.swaggerhub.com
+basePath: /carledwinti/Cliente_API/1.0.0
+schemes: 
+  - http
+  - https
+paths:
+
+  /clientes:
+    get:
+      tags:
+        - Consulta
+      summary: "Consulta todos os clientes"
+      operationId: "consultaTodos"
+      description: "Consultar todos os clientes"
+      responses:
+        200:
+          description: "Sucesso!"
+          schema:
+            $ref: "#/definitions/Clientes"
+        400:
+          description: "Consolta invalida"
+        401:
+          description: "Não Autorizada"
+        404:
+          description: "Nunhum cliente encontrado"
+        500:
+          description: "Erro de servidor"
+  
+  /cliente:
+    post:
+      tags:
+        - Cadastro
+      summary: "Cadasto de novo cliente"
+      operationId: "cadastraNovo"
+      description: "Cadastrar novo cliente"
+      parameters:
+        - in: "body"
+          name: "cliente"
+          required: true
+          schema:
+            $ref: "#/definitions/Cliente"
+      responses:
+        201:
+          description: "Sucesso!"
+          schema:
+            $ref: "#/definitions/Cliente"
+          headers:
+            location:
+              type: "string"
+              description: "URI do cliente cadastrado"
+        400:
+          description: "Cadastro invalida"
+        401:
+          description: "Cadastro não Autorizada"
+        500:
+          description: "Erro de servidor"
+          
+  /cliente/{id}:
+    put:
+      tags:
+        - Manutencao
+      operationId: "alteraCliente"
+      summary: "Altera um Cliente"
+      description: "Altera um Cliente"
+      parameters:
+        - in: "path"
+          required: true
+          name: "id"
+          type: "integer"
+          format: "int32"
+          description: "ID do Cliente"
+        - in: "body"
+          name: "cliente"
+          required: true
+          schema:
+            $ref: "#/definitions/Cliente"
+      responses:
+        202:
+          description: "Sucesso!"
+          schema:
+            $ref: "#/definitions/Cliente"
+          headers:
+            Location:
+              type: "string"
+              description: "URI do cliente alterado"
+        400:
+          description: "Alteracao invalida"
+        401:
+          description: "Alteracao não Autorizada"
+        500:
+          description: "Erro de servidor"
+    get:
+      tags:
+        - Consulta
+      operationId: "consultaPorId"
+      summary: "Consulta Cliente por ID"
+      description: "Consulta Cliente por ID"
+      parameters:
+        - in: "path"
+          required: true
+          name: "id"
+          type: "integer"
+          format: "int32"
+          description: "ID do Cliente"
+      responses:
+        200:
+          description: "Sucesso!"
+          schema:
+            $ref: "#/definitions/Cliente"
+        400:
+          description: "Consulta invalida"
+        401:
+          description: "Consulta não Autorizada"
+        404:
+          description: "Nenhum cliente encontrado"
+        500:
+          description: "Erro de servidor"
+    delete:
+      tags:
+        - Exclusao
+      operationId: "excluiExistente"
+      summary: "Exclusao de Cliente por ID"
+      description: "Exclusao de Cliente por ID"
+      parameters:
+        - in: "path"
+          required: true
+          name: "id"
+          type: "integer"
+          format: "int32"
+          description: "ID do Cliente"
+      responses:
+        204:
+          description: "Sucesso!"
+        400:
+          description: "Exclusao invalida"
+        401:
+          description: "Exclusao não Autorizada"
+        404:
+          description: "Nenhum cliente encontrado para Exclusao"
+        500:
+          description: "Erro de servidor"
+  
+  /cliente/consulta/{sobrenome}:
+    get:
+      tags:
+        - Consulta
+      operationId: "consultaPorSobrenome"
+      summary: "Consulta por Sobrenome"
+      description: "Consulta por Sobrenome"
+      parameters:
+        - in: "path"
+          required: true
+          name: "sobrenome"
+          type: "string"
+          description: "Sobrenome do Cliente"
+      responses:
+        200:
+          description: "Sucesso!"
+          schema:
+            $ref: "#/definitions/Clientes"
+        400:
+          description: "Consulta invalida"
+        401:
+          description: "Consulta não Autorizada"
+        404:
+          description: "Nenhum cliente encontrado"
+        500:
+          description: "Erro de servidor"
+          
+  /cliente/{status}/{id}:
+    put:
+      tags:
+        - Manutencao
+      operationId: "alteraStatusPorId"
+      summary: "Alteração de status do cliente"
+      description: "Alteração de status do cliente"
+      parameters:
+        - in: "path"
+          required: true
+          name: "status"
+          type: "string"
+          enum: ["interno","externo"]
+          description: "Status do Cliente"
+        - in: "path"
+          required: true
+          name: "id"
+          type: "integer"
+          format: "int32"
+          description: "ID do Cliente"
+      responses:
+        202:
+          description: "Sucesso!"
+          schema:
+            $ref: "#/definitions/Cliente"
+          headers:
+            Location:
+              type: "string"
+              description: "URI do cliente alterado"
+        400:
+          description: "Alteração invalida"
+        401:
+          description: "Alteração não Autorizada"
+        404:
+          description: "Nenhum cliente encontrado para Alteração"
+        500:
+          description: "Erro de servidor"
+  
+  /readme:
+    get:
+      tags:
+        - API
+      operationId: "readme"
+      summary: "Lista Readme da API" 
+      description: "Lista Readme da API" 
+      responses:
+        200:
+          description: "Sucesso!"
+          schema:
+            type: "string"
+        500:
+          description: "Erro de servidor"
+    
+          
+definitions:
+
+  Clientes:
+    type: array
+    items:
+      $ref: "#/definitions/Cliente"
+
+  Cliente:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+        description: "Identeificador do cliente"
+      nome:
+        type: "string"
+        description: "Nome do cliente"
+      sobrenome:
+        type: "string"
+        description: "Sobrenome do cliente"
+      iniciais:
+        type: "string"
+        minLength: 2
+        maxLength: 7
+        description: "Iniciais do nome do Cliente"
+      dataNascinmento:
+        type: "string"
+        format: "date"
+        description: "Data de nascimento"
+      dataAtualizacao:
+        type: "string"
+        format: "date-time"
+        description: "Data de atualizacao"
+      status:
+        type: "boolean"
+        description: "status do cliente"
+      tipoDeCliente:
+        type: "string"
+        enum: ["interno","externo"]
+  
+        
+    

@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "b2351f1d-86b8-42bb-bec1-6d70e124a0aa",
+		"name": "udemy-swagger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getClientes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/cliente-api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"cliente-api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvaCliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Paulo Sanit\",\n  \"sobrenome\": \"Maris\",\n  \"iniciais\": \"CSM\",\n  \"dataNascimento\": \"1950-01-01\",\n  \"tipo\": \"interno\"\n}\n\n\n{\n  \"nome\": \"Rodrigo\",\n  \"sobrenome\": \"Mendes\",\n  \"iniciais\": \"RM\",\n  \"dataNascimento\": \"1950-01-01\",\n  \"tipo\": \"interno\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/cliente-api/cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"cliente-api",
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultaPorSobrenome",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/cliente-api/cliente/consulta/Nogueira",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"cliente-api",
+						"cliente",
+						"consulta",
+						"Nogueira"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultaPorId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/cliente-api/cliente/125",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"cliente-api",
+						"cliente",
+						"125"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "excluiExistente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/cliente-api/cliente/125",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"cliente-api",
+						"cliente",
+						"125"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alteraStatusPorId",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Paulo Sanit\",\n  \"sobrenome\": \"Maris\",\n  \"iniciais\": \"CSM\",\n  \"dataNascimento\": \"1950-01-01\",\n  \"tipo\": \"interno\"\n}\n\n\n{\n  \"nome\": \"Rodrigo\",\n  \"sobrenome\": \"Mendes\",\n  \"iniciais\": \"RM\",\n  \"dataNascimento\": \"1950-01-01\",\n  \"tipo\": \"interno\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/cliente-api/cliente/inativo/125",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"cliente-api",
+						"cliente",
+						"inativo",
+						"125"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "readme",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/cliente-api/cliente/125",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"cliente-api",
+						"cliente",
+						"125"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
